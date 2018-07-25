@@ -1,0 +1,37 @@
+
+Make A Level Super Sheet
+
+SELECT * 
+  INTO  ALevelSuperSheet
+FROM
+(SELECT [NI A Level Data 2015-2017].[School Code],[NI A Level Data 2015-2017].[School Name], [NI A Level Data 2015-2017].[Above or Below Average]
+FROM [NI A Level Data 2015-2017]
+
+UNION SELECT [W A Level Data 2015-2017].[School Code], [W A Level Data 2015-2017].[School Name], [W A Level Data 2015-2017].[Above or Below Average]
+FROM [W A Level Data 2015-2017]
+
+
+UNION SELECT [E A Level Data 2015-2017].[School Code], [E A Level Data 2015-2017].[School Name], [E A Level Data 2015-2017].[Above or Below Average]
+FROM [E A Level Data 2015-2017]
+
+UNION SELECT [S A Level Data 2015-2017].[School Code], [S A Level Data 2015-2017].[School Name], [S A Level Data 2015-2017].[Above or Below Average]
+FROM [S A Level Data 2015-2017])a
+
+
+
+Make GCSE Super Sheet
+
+SELECT * 
+  INTO  GCSESuperSheet
+FROM
+(SELECT [NI GCSE Data 2015-2017].[School Code],[NI GCSE Data 2015-2017].[School Name], [NI GCSE Data 2015-2017].[Above or Below Average]
+FROM [NI A GCSE Data 2015-2017]
+
+UNION SELECT [W GCSE Data 2015-2017].[School Code], [W GCSE Data 2015-2017].[School Name], [W GCSE Data 2015-2017].[Above or Below Average]
+FROM [W GCSE Data 2015-2017]
+
+
+UNION SELECT [E GCSE Data 2015-2017].[School Code], [E GCSE Data 2015-2017].[School Name], [E GCSE Data 2015-2017].[Above or Below Average]
+FROM [E GCSE Data 2015-2017])a
+
+
