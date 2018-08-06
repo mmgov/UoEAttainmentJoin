@@ -1,0 +1,42 @@
+;
+with GCSESuperSheet as (
+SELECT [NI GCSE Data 2015-2017].[School Code],[NI GCSE Data 2015-2017].[School Name], [NI GCSE Data 2015-2017].[Above or Below Average]
+FROM [NI A GCSE Data 2015-2017]
+
+UNION SELECT [W GCSE Data 2015-2017].[School Code], [W GCSE Data 2015-2017].[School Name], [W GCSE Data 2015-2017].[Above or Below Average]
+FROM [W GCSE Data 2015-2017]
+
+
+UNION SELECT [E GCSE Data 2015-2017].[School Code], [E GCSE Data 2015-2017].[School Name], [E GCSE Data 2015-2017].[Above or Below Average]
+FROM [E GCSE Data 2015-2017]
+)
+, ALevelSuperSheet as
+(SELECT [NI A Level Data 2015-2017].[School Code],[NI A Level Data 2015-2017].[School Name], [NI A Level Data 2015-2017].[Above or Below Average]
+FROM [NI A Level Data 2015-2017]
+
+UNION SELECT [W A Level Data 2015-2017].[School Code], [W A Level Data 2015-2017].[School Name], [W A Level Data 2015-2017].[Above or Below Average]
+FROM [W A Level Data 2015-2017]
+
+
+UNION SELECT [E A Level Data 2015-2017].[School Code], [E A Level Data 2015-2017].[School Name], [E A Level Data 2015-2017].[Above or Below Average]
+FROM [E A Level Data 2015-2017]
+
+UNION SELECT [S A Level Data 2015-2017].[School Code], [S A Level Data 2015-2017].[School Name], [S A Level Data 2015-2017].[Above or Below Average]
+FROM [S A Level Data 2015-2017]
+)
+SELECT [UCAS List].[School Code]
+, [UCAS List].[DfE Number]
+, [UCAS List].[LEA Code]
+, [UCAS List].[National Centre Number]
+, [UCAS List].[School Name]
+, [UCAS List].Postcode
+, [UCAS List].Country
+, [UCAS List].[School Type]
+, GCSESuperSheet.[Above or Below Average] AS [GCSE Level Performance]
+, ALevelSuperSheet.[Above or Below Average] AS [A Level Performance]
+, [UCAS List].[Target School] 
+INTO [UCAS List 2019]
+FROM [UCAS List] 
+LEFT JOIN ALevelSuperSheet ON [UCAS List].[School Code] = ALevelSuperSheet.[School Code]
+LEFT JOIN GCSESuperSheet ON [UCAS List].[School Code] = GCSESuperSheet.[School Code]
+;
